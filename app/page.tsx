@@ -62,36 +62,26 @@ export default function Home() {
 
           <div className="hero__shade" aria-hidden="true" />
 
-          <header className="site-header">
-            <a
-              className="site-header__brand"
-              href="#top"
-              aria-label="ARQAX, inicio"
-            >
-              <span className="site-header__signal" aria-hidden="true" />
-              <span className="site-header__brand-copy">
-                <strong>ARQAX</strong>
-                <small>Arquitectura · México</small>
-              </span>
+          <nav className="hero-nav" aria-label="Navegación principal">
+            <a className="hero-nav__button" href="#proyectos">
+              <span>01</span>
+              <strong>Proyectos</strong>
+              <i aria-hidden="true">↘</i>
             </a>
-
-            <nav className="site-header__nav" aria-label="Navegación principal">
-              <a href="#proyectos">
-                <span>01</span>
-                Proyectos
-              </a>
-              <a href="#estudio">
-                <span>02</span>
-                Estudio
-              </a>
-            </nav>
-
-            <a className="site-header__cta" href="#contacto">
-              <span className="site-header__cta-desktop">Iniciar proyecto</span>
-              <span className="site-header__cta-mobile">Contacto</span>
+            <a className="hero-nav__button" href="#estudio">
+              <span>02</span>
+              <strong>Estudio</strong>
+              <i aria-hidden="true">↘</i>
+            </a>
+            <a
+              className="hero-nav__button hero-nav__button--light"
+              href="#contacto"
+            >
+              <span>03</span>
+              <strong>Contacto</strong>
               <i aria-hidden="true">↗</i>
             </a>
-          </header>
+          </nav>
 
           <div className="hero__identity">
             <span className="hero__logo-reveal">
