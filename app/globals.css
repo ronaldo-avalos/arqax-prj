@@ -44,6 +44,24 @@ a {
   background: #15191d;
 }
 
+.hero__stage::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: auto 0 -1px 0;
+  height: clamp(15rem, 42svh, 32rem);
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    #0b0d0e 0%,
+    #0b0d0e 24%,
+    rgba(11, 13, 14, 0.86) 44%,
+    rgba(11, 13, 14, 0.5) 64%,
+    rgba(11, 13, 14, 0.22) 82%,
+    rgba(11, 13, 14, 0) 100%
+  );
+}
+
 .hero__canvas {
   position: absolute;
   top: 50%;
@@ -280,7 +298,6 @@ a {
   justify-content: center;
   padding: clamp(4rem, 9vw, 9rem);
   background: #0b0d0e;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .next-chapter p,
