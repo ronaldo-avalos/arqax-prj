@@ -4,19 +4,13 @@
 /node_modules
 /.pnp
 .pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
-# testing
-/coverage
+# build output
+/dist/
+/.astro/
 
-# next.js
-/.next/
-/.vinext/
-/out/
+# generated types
+.astro/types.d.ts
 
 # misc
 .DS_Store
@@ -31,12 +25,7 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# vercel
-.vercel
-
-# typescript
-next-env.d.ts
-/dist/
-/.wrangler/
-/outputs/
-/work/
+# local scratch assets
+/resources/
+hero-img.png
+ChatGPT Image*.png
