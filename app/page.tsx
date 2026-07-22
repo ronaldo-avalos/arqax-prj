@@ -96,9 +96,10 @@ export default function Home() {
       </section>
 
       <section className="next-chapter" id="proyectos">
-        <p>ARQAX · Arquitectura</p>
-        <h2>Espacios que permanecen.</h2>
-        <span>Proyectos seleccionados — próximamente</span>
+        <header className="next-chapter__head">
+          <p>ARQAX · Arquitectura</p>
+          <h2>Proyectos destacados</h2>
+        </header>
       </section>
       <span id="estudio" className="anchor-target" />
       <span id="contacto" className="anchor-target" />
