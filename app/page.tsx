@@ -63,24 +63,9 @@ export default function Home() {
           <div className="hero__shade" aria-hidden="true" />
 
           <nav className="hero-nav" aria-label="Navegación principal">
-            <a className="hero-nav__button" href="#proyectos">
-              <span>01</span>
-              <strong>Proyectos</strong>
-              <i aria-hidden="true">↘</i>
-            </a>
-            <a className="hero-nav__button" href="#estudio">
-              <span>02</span>
-              <strong>Estudio</strong>
-              <i aria-hidden="true">↘</i>
-            </a>
-            <a
-              className="hero-nav__button hero-nav__button--light"
-              href="#contacto"
-            >
-              <span>03</span>
-              <strong>Contacto</strong>
-              <i aria-hidden="true">↗</i>
-            </a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#estudio">Estudio</a>
+            <a href="#contacto">Contacto</a>
           </nav>
 
           <div className="hero__identity">
