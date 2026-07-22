@@ -62,23 +62,45 @@ export default function Home() {
 
           <div className="hero__shade" aria-hidden="true" />
 
-          <header className="nav-shell">
-            <a className="nav-shell__brand" href="#top" aria-label="ARQAX, inicio">
-              ARQAX
+          <header className="site-header">
+            <a
+              className="site-header__brand"
+              href="#top"
+              aria-label="ARQAX, inicio"
+            >
+              <span className="site-header__signal" aria-hidden="true" />
+              <span className="site-header__brand-copy">
+                <strong>ARQAX</strong>
+                <small>Arquitectura · México</small>
+              </span>
             </a>
-            <nav className="nav-shell__links" aria-label="Navegación principal">
-              <a href="#proyectos">Proyectos</a>
-              <a href="#estudio">Estudio</a>
-              <a href="#contacto">Contacto</a>
+
+            <nav className="site-header__nav" aria-label="Navegación principal">
+              <a href="#proyectos">
+                <span>01</span>
+                Proyectos
+              </a>
+              <a href="#estudio">
+                <span>02</span>
+                Estudio
+              </a>
             </nav>
+
+            <a className="site-header__cta" href="#contacto">
+              <span className="site-header__cta-desktop">Iniciar proyecto</span>
+              <span className="site-header__cta-mobile">Contacto</span>
+              <i aria-hidden="true">↗</i>
+            </a>
           </header>
 
           <div className="hero__identity">
-            <img
-              className="hero__logo"
-              src="/arqax-logo.svg"
-              alt="ARQAX Arquitectura"
-            />
+            <span className="hero__logo-reveal">
+              <img
+                className="hero__logo"
+                src="/arqax-logo.svg"
+                alt="ARQAX Arquitectura"
+              />
+            </span>
           </div>
 
           <div className="scroll-cue" aria-hidden="true">
