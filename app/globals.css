@@ -85,7 +85,7 @@ a {
   left: 0.3125%;
   bottom: 0;
   width: 99.6875%;
-  height: 98.006%;
+  height: 100%;
   transform: translate3d(
       0,
       calc(var(--scroll-progress) * -17svh),
