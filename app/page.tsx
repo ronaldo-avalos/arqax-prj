@@ -93,6 +93,16 @@ export default function Home() {
             </span>
           </div>
 
+          <div className="hero__copy">
+            <div className="hero__copy-reveal">
+              <h1>Diseños que impactan</h1>
+              <p>
+                Estudio de arquitectura. Identidad que construye confianza,
+                diseña experiencias y transforma espacios.
+              </p>
+            </div>
+          </div>
+
           <div className="scroll-cue" aria-hidden="true">
             <span>Descubre</span>
             <i />
@@ -102,7 +112,7 @@ export default function Home() {
 
       <section className="next-chapter" id="proyectos">
         <p>ARQAX · Arquitectura</p>
-        <h1>Espacios que permanecen.</h1>
+        <h2>Espacios que permanecen.</h2>
         <span>Proyectos seleccionados — próximamente</span>
       </section>
       <span id="estudio" className="anchor-target" />

@@ -251,6 +251,42 @@ a {
   animation: logo-intro 1.15s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.hero__copy {
+  position: absolute;
+  z-index: 6;
+  bottom: clamp(7.5rem, 15.5svh, 10.5rem);
+  left: clamp(1.5rem, 5.6vw, 5.75rem);
+  width: min(55rem, calc(100% - 3rem));
+  transform: translate3d(0, calc(var(--scroll-progress) * 4svh), 0);
+  opacity: calc(1 - var(--scroll-progress) * 1.35);
+  will-change: transform, opacity;
+}
+
+.hero__copy-reveal {
+  animation: hero-copy-intro 1s 0.78s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__copy h1 {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: clamp(2.8rem, 4.55vw, 4.7rem);
+  font-weight: 200;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.hero__copy p {
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.78rem, 1vw, 1rem);
+  font-weight: 300;
+  line-height: 1.45;
+  letter-spacing: 0.035em;
+}
+
 .scroll-cue {
   position: absolute;
   z-index: 7;
@@ -304,7 +340,7 @@ a {
   text-transform: uppercase;
 }
 
-.next-chapter h1 {
+.next-chapter h2 {
   max-width: 12ch;
   margin: 1.1rem 0 3.5rem;
   color: #efeee9;
@@ -368,6 +404,19 @@ a {
   }
 }
 
+@keyframes hero-copy-intro {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
 @media (max-width: 700px) {
   .hero {
     height: 175svh;
@@ -412,6 +461,24 @@ a {
     width: clamp(11.5rem, 48vw, 14rem);
   }
 
+  .hero__copy {
+    bottom: 7.25rem;
+    left: 1.25rem;
+    width: calc(100% - 2.5rem);
+  }
+
+  .hero__copy h1 {
+    max-width: 10ch;
+    font-size: clamp(2.35rem, 11.2vw, 3.35rem);
+    line-height: 0.93;
+  }
+
+  .hero__copy p {
+    max-width: 29rem;
+    margin-top: 0.85rem;
+    font-size: 0.76rem;
+  }
+
   .hero__front {
     transform: translate3d(
         0,
@@ -435,7 +502,9 @@ a {
   .hero__front,
   .hero__identity,
   .hero__logo,
-  .hero__logo-reveal {
+  .hero__logo-reveal,
+  .hero__copy,
+  .hero__copy-reveal {
     transform: none;
     filter: none;
     opacity: 1;
@@ -443,7 +512,8 @@ a {
 
   .hero-nav__button,
   .hero__back,
-  .hero__logo-reveal {
+  .hero__logo-reveal,
+  .hero__copy-reveal {
     animation: none;
   }
 
