@@ -221,7 +221,7 @@ a {
 .hero__copy h1 {
   margin: 0;
   color: rgba(255, 255, 255, 0.96);
-  font-size: clamp(2.8rem, 4.55vw, 4.7rem);
+  font-size: clamp(2.15rem, 3.35vw, 3.45rem);
   font-weight: 200;
   line-height: 0.98;
   letter-spacing: -0.035em;
@@ -399,7 +399,7 @@ a {
 
   .hero__copy h1 {
     max-width: 10ch;
-    font-size: clamp(2.35rem, 11.2vw, 3.35rem);
+    font-size: clamp(1.9rem, 8.7vw, 2.65rem);
     line-height: 0.93;
   }
 
