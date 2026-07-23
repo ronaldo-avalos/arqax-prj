@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 
 const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
 ---
 
 <Base>
@@ -134,6 +135,36 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__top reveal">
+      <div class="site-footer__brand">
+        <p class="site-footer__wordmark">ARQAX</p>
+        <p class="site-footer__tagline">
+          Estudio de arquitectura. Espacios sobrios, precisos y duraderos.
+        </p>
+      </div>
+
+      <nav class="site-footer__col" aria-label="Navegación del pie de página">
+        <p class="site-footer__heading">Navegación</p>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#estudio">Estudio</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="site-footer__col">
+        <p class="site-footer__heading">Síguenos</p>
+        <!-- Reemplaza href="#" por las URLs reales de las redes -->
+        <a href="#" rel="noopener">Instagram</a>
+        <a href="#" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© {year} ARQAX Arquitectura · Todos los derechos reservados</p>
+      <a href="#top" class="site-footer__totop">Volver arriba ↑</a>
+    </div>
+  </footer>
 </Base>
 
 <script>
