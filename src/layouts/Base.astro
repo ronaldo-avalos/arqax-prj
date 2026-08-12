@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 interface Props {
@@ -38,8 +39,178 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content="Espacios sobrios, precisos y duraderos." />
     <meta name="twitter:image" content={ogImage} />
+
+    <ClientRouter />
   </head>
   <body>
     <slot />
+
+    <script>
+      const clamp = (value: number, min: number, max: number) =>
+        Math.min(Math.max(value, min), max);
+
+      // Parallax del hero — un solo listener global; el elemento se
+      // consulta por frame porque cambia con cada navegación SPA.
+      let frame = 0;
+
+      const updateHeroProgress = () => {
+        frame = 0;
+        const hero = document.querySelector<HTMLElement>(".hero");
+        if (!hero) return;
+        const rect = hero.getBoundingClientRect();
+        const scrollableDistance = Math.max(rect.height - window.innerHeight, 1);
+        const progress = clamp(-rect.top / scrollableDistance, 0, 1);
+        hero.style.setProperty("--scroll-progress", progress.toFixed(4));
+      };
+
+      const requestHeroUpdate = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(updateHeroProgress);
+      };
+
+      window.addEventListener("scroll", requestHeroUpdate, { passive: true });
+      window.addEventListener("resize", requestHeroUpdate);
+
+      // Reveal-on-scroll for elements marked with .reveal
+      const initReveal = () => {
+        const revealTargets = document.querySelectorAll<HTMLElement>(".reveal");
+        if (!revealTargets.length) return;
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.18 },
+        );
+        revealTargets.forEach((el) => io.observe(el));
+      };
+
+      // Lightbox de proyecto
+      const initLightbox = () => {
+        const lightbox = document.querySelector<HTMLDialogElement>("#lightbox");
+        if (!lightbox) return;
+
+        const lbImg = lightbox.querySelector<HTMLImageElement>(".lightbox__img");
+        const lbCaption = lightbox.querySelector<HTMLElement>(".lightbox__caption");
+        const lbClose = lightbox.querySelector<HTMLButtonElement>(
+          ".lightbox__close",
+        );
+
+        const lbInner = lightbox.querySelector<HTMLElement>(".lightbox__inner");
+
+        document
+          .querySelectorAll<HTMLButtonElement>(".shot__btn")
+          .forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const full = btn.dataset.full;
+              const caption = btn.dataset.caption ?? "";
+              const img = btn.querySelector("img");
+              if (!full || !lbImg || lightbox.open) return;
+
+              lbImg.src = full;
+              lbImg.alt = img?.alt ?? caption;
+              if (lbCaption) lbCaption.textContent = caption;
+              lightbox.showModal();
+              document.body.classList.add("has-lightbox");
+            });
+          });
+
+        lbClose?.addEventListener("click", () => lightbox.close());
+
+        // Tocar fuera de la imagen cierra (el diálogo cubre todo el viewport)
+        lbInner?.addEventListener("click", (event) => {
+          if (event.target !== lbImg) lightbox.close();
+        });
+
+        lightbox.addEventListener("close", () => {
+          document.body.classList.remove("has-lightbox");
+          if (lbImg) lbImg.removeAttribute("src");
+        });
+      };
+
+      // Contact form → Web3Forms (AJAX)
+      const initContactForm = () => {
+        const form = document.querySelector<HTMLFormElement>("#contact-form");
+        if (!form) return;
+
+        const status = form.querySelector<HTMLParagraphElement>(
+          ".contact__status",
+        );
+        const submit = form.querySelector<HTMLButtonElement>(
+          "button[type=submit]",
+        );
+
+        const setStatus = (message: string, state: string) => {
+          if (!status) return;
+          status.textContent = message;
+          status.className = `contact__status is-${state}`;
+        };
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          const accessKey = (
+            form.querySelector<HTMLInputElement>("[name=access_key]")?.value ??
+            ""
+          ).trim();
+          if (!accessKey || accessKey === "YOUR_WEB3FORMS_ACCESS_KEY") {
+            setStatus(
+              "El formulario aún no está configurado. Falta la access key de Web3Forms.",
+              "error",
+            );
+            return;
+          }
+
+          if (submit) submit.disabled = true;
+          setStatus("Enviando…", "sending");
+
+          try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body: new FormData(form),
+            });
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+              setStatus(
+                "¡Gracias! Tu mensaje fue enviado. Te responderemos pronto.",
+                "success",
+              );
+              form.reset();
+            } else {
+              setStatus(
+                result.message ?? "No se pudo enviar. Inténtalo de nuevo.",
+                "error",
+              );
+            }
+          } catch {
+            setStatus(
+              "Error de conexión. Inténtalo de nuevo más tarde.",
+              "error",
+            );
+          } finally {
+            if (submit) submit.disabled = false;
+          }
+        });
+      };
+
+      // Se dispara en la carga inicial y tras cada navegación con ClientRouter
+      document.addEventListener("astro:page-load", () => {
+        updateHeroProgress();
+        initReveal();
+        initLightbox();
+        initContactForm();
+      });
+    </script>
   </body>
 </html>

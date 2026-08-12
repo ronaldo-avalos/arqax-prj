@@ -1,0 +1,202 @@
+---
+import Base from "../../layouts/Base.astro";
+import {
+  projects,
+  projectUrl,
+  shotSrc,
+  shotSrcset,
+  type Project,
+  type Shot,
+} from "../../data/projects";
+
+export const getStaticPaths = () =>
+  projects.map((project, index) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+      index,
+      next: projects[(index + 1) % projects.length],
+    },
+  }));
+
+interface Props {
+  project: Project;
+  index: number;
+  next: Project;
+}
+
+const { project, index, next } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+const number = String(index + 1).padStart(2, "0");
+
+// La galería se agrupa en filas: las tomas `full` rompen la retícula a
+// sangre completa; las demás corren en pares de dos columnas.
+type Row = { kind: "full"; shot: Shot } | { kind: "grid"; shots: Shot[] };
+
+const rows: Row[] = [];
+for (const shot of project.gallery) {
+  if (shot.full) {
+    rows.push({ kind: "full", shot });
+  } else {
+    const last = rows[rows.length - 1];
+    if (last?.kind === "grid") last.shots.push(shot);
+    else rows.push({ kind: "grid", shots: [shot] });
+  }
+}
+---
+
+<Base
+  title={`${project.name} — ARQAX Arquitectura`}
+  description={project.copy}
+>
+  <header class="case-bar">
+    <a class="case-bar__brand" href={base} aria-label="ARQAX — inicio">
+      <img src={`${base}arqax-logo.svg`} alt="" width="92" height="24" />
+    </a>
+    <nav class="case-bar__nav" aria-label="Navegación">
+      <a href={`${base}#proyectos`}>Proyectos</a>
+      <a href={`${base}#estudio`}>Estudio</a>
+      <a href={`${base}#contacto`}>Contacto</a>
+    </nav>
+  </header>
+
+  <main class="case">
+    <figure class="case-hero">
+      <img
+        transition:name={`hero-${project.slug}`}
+        src={shotSrc(project.slug, project.hero, 1)}
+        srcset={shotSrcset(project.slug, project.hero)}
+        sizes="100vw"
+        alt={project.hero.alt}
+        width={project.hero.size[0]}
+        height={project.hero.size[1]}
+        loading="eager"
+        decoding="async"
+      />
+      <figcaption>{project.hero.caption}</figcaption>
+    </figure>
+
+    <header class="case-head" data-index={number}>
+      <div class="case-head__intro">
+        <p class="case-head__eyebrow">
+          Proyecto {number} — {project.type}
+        </p>
+        <h1 class="case-head__name" transition:name={`title-${project.slug}`}>
+          {project.name}
+        </h1>
+        <p class="case-head__copy">{project.copy}</p>
+      </div>
+
+      <dl class="project__meta case-head__meta reveal">
+        {
+          project.meta.map(([term, value]) => (
+            <div>
+              <dt>{term}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </header>
+
+    <section class="case-gallery" aria-label={`Galería de ${project.name}`}>
+      {
+        rows.map((row) =>
+          row.kind === "full" ? (
+            <figure class="shot case-shot--full reveal">
+              <button
+                type="button"
+                class="shot__btn"
+                data-full={shotSrc(project.slug, row.shot, 1)}
+                data-caption={`${project.name} — ${row.shot.caption}`}
+              >
+                <img
+                  src={shotSrc(project.slug, row.shot, 0)}
+                  srcset={shotSrcset(project.slug, row.shot)}
+                  sizes="100vw"
+                  alt={row.shot.alt}
+                  width={row.shot.size[0]}
+                  height={row.shot.size[1]}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+              <figcaption>{row.shot.caption}</figcaption>
+            </figure>
+          ) : (
+            <div class="case-gallery__grid">
+              {row.shots.map((shot) => (
+                <figure class="shot reveal">
+                  <button
+                    type="button"
+                    class="shot__btn"
+                    data-full={shotSrc(project.slug, shot, 1)}
+                    data-caption={`${project.name} — ${shot.caption}`}
+                  >
+                    <img
+                      src={shotSrc(project.slug, shot, 0)}
+                      srcset={shotSrcset(project.slug, shot)}
+                      sizes="(max-width: 60rem) 100vw, 39rem"
+                      alt={shot.alt}
+                      width={shot.size[0]}
+                      height={shot.size[1]}
+                      style={
+                        shot.ratio ? `aspect-ratio: ${shot.ratio}` : undefined
+                      }
+                      class:list={{ "shot__img--cover": shot.ratio }}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </button>
+                  <figcaption>{shot.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          ),
+        )
+      }
+    </section>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Imagen ampliada">
+      <div class="lightbox__inner">
+        <img class="lightbox__img" src="" alt="" />
+        <p class="lightbox__caption"></p>
+      </div>
+      <button type="button" class="lightbox__close" aria-label="Cerrar imagen">
+        ✕
+      </button>
+    </dialog>
+
+    <a class="case-next" href={projectUrl(next)}>
+      <div class="case-next__label">
+        <p class="case-next__eyebrow">Siguiente proyecto</p>
+        <h2 class="case-next__name" transition:name={`title-${next.slug}`}>
+          {next.name}
+        </h2>
+        <span class="case-next__cta">
+          Ver proyecto <span aria-hidden="true">→</span>
+        </span>
+      </div>
+      <figure class="case-next__media" aria-hidden="true">
+        <img
+          transition:name={`hero-${next.slug}`}
+          src={shotSrc(next.slug, next.hero, 0)}
+          srcset={shotSrcset(next.slug, next.hero)}
+          sizes="100vw"
+          alt=""
+          width={next.hero.size[0]}
+          height={next.hero.size[1]}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </a>
+  </main>
+
+  <footer class="case-footer">
+    <p>© {year} ARQAX Arquitectura</p>
+    <a href={`${base}#contacto`}>Hablemos de tu próximo proyecto →</a>
+  </footer>
+</Base>
