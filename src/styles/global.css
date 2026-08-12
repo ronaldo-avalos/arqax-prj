@@ -1,11 +1,11 @@
 :root {
   --ink: #090b0c;
   --paper: #efeee9;
-  /* Acento de marca — Champagne Gold (uso secundario) */
-  --gold: #c6a46b;
-  --gold-soft: rgba(198, 164, 107, 0.78);
-  --gold-dim: rgba(198, 164, 107, 0.55);
-  --gold-line: rgba(198, 164, 107, 0.32);
+  /* Acento de marca — Gris plata (uso secundario) */
+  --silver: #bfc5cc;
+  --silver-soft: rgba(191, 197, 204, 0.78);
+  --silver-dim: rgba(191, 197, 204, 0.55);
+  --silver-line: rgba(191, 197, 204, 0.32);
 }
 
 * {
@@ -170,7 +170,7 @@ a {
   height: 1px;
   transform: scaleX(0);
   transform-origin: right;
-  background: var(--gold);
+  background: var(--silver);
   transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -290,7 +290,7 @@ a {
   display: block;
   width: 100%;
   height: 55%;
-  background: var(--gold);
+  background: var(--silver);
   animation: scroll-line 1.9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
@@ -309,7 +309,7 @@ a {
 
 .next-chapter__head p {
   margin: 0;
-  color: var(--gold-soft);
+  color: var(--silver-soft);
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -319,11 +319,11 @@ a {
   max-width: 14ch;
   margin: 1.2rem 0 0;
   color: #efeee9;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(3.2rem, 8vw, 8.4rem);
-  font-weight: 400;
+  font-weight: 200;
   line-height: 0.94;
   letter-spacing: -0.045em;
+  text-transform: uppercase;
 }
 
 .anchor-target {
@@ -354,7 +354,7 @@ a {
 }
 
 .work__link:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--silver);
   outline-offset: 0.4rem;
 }
 
@@ -401,22 +401,22 @@ a {
 
 .work__index {
   margin: 0;
-  color: rgba(198, 164, 107, 0.08);
-  font-family: Georgia, "Times New Roman", serif;
+  color: rgba(191, 197, 204, 0.08);
+  font-weight: 200;
   font-size: clamp(4.5rem, 10vw, 8rem);
   line-height: 0.8;
   letter-spacing: -0.04em;
-  -webkit-text-stroke: 1px rgba(198, 164, 107, 0.35);
+  -webkit-text-stroke: 1px rgba(191, 197, 204, 0.35);
 }
 
 .work__name {
   margin: 1.3rem 0 0;
   color: #efeee9;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2rem, 4.2vw, 3.4rem);
-  font-weight: 400;
+  font-weight: 200;
   line-height: 0.98;
   letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .work__type {
@@ -432,7 +432,7 @@ a {
   margin-top: clamp(1.5rem, 3.5vw, 2.75rem);
   padding-top: 1rem;
   border-top: 1px solid rgba(239, 238, 233, 0.14);
-  color: var(--gold-dim);
+  color: var(--silver-dim);
   font-size: 0.64rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -447,7 +447,7 @@ a {
 
 .work__link:hover .work__cta,
 .work__link:focus-visible .work__cta {
-  color: var(--gold);
+  color: var(--silver);
 }
 
 .work__link:hover .work__cta span,
@@ -492,7 +492,7 @@ a {
 }
 
 .shot__btn:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--silver);
   outline-offset: 0.35rem;
 }
 
@@ -513,7 +513,7 @@ a {
 }
 
 .project__meta dt {
-  color: var(--gold-dim);
+  color: var(--silver-dim);
   font-size: 0.6rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -617,12 +617,12 @@ a {
 
 .lightbox__close:hover,
 .lightbox__close:focus-visible {
-  border-color: var(--gold);
-  color: var(--gold);
+  border-color: var(--silver);
+  color: var(--silver);
 }
 
 .lightbox__close:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--silver);
   outline-offset: 0.25rem;
 }
 
@@ -664,7 +664,7 @@ body.has-lightbox {
 
 .case-bar__nav a:hover,
 .case-bar__nav a:focus-visible {
-  color: var(--gold);
+  color: var(--silver);
 }
 
 .case-hero {
@@ -718,18 +718,18 @@ body.has-lightbox {
   top: -0.18em;
   right: -0.05em;
   z-index: -1;
-  color: rgba(198, 164, 107, 0.06);
-  font-family: Georgia, "Times New Roman", serif;
+  color: rgba(191, 197, 204, 0.06);
+  font-weight: 200;
   font-size: clamp(9rem, 24vw, 20rem);
   line-height: 1;
   letter-spacing: -0.04em;
-  -webkit-text-stroke: 1px rgba(198, 164, 107, 0.16);
+  -webkit-text-stroke: 1px rgba(191, 197, 204, 0.16);
   pointer-events: none;
 }
 
 .case-head__eyebrow {
   margin: 0;
-  color: var(--gold-soft);
+  color: var(--silver-soft);
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -738,11 +738,11 @@ body.has-lightbox {
 .case-head__name {
   margin: 1.1rem 0 0;
   color: #efeee9;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2.6rem, 6vw, 5rem);
-  font-weight: 400;
+  font-weight: 200;
   line-height: 0.98;
   letter-spacing: -0.035em;
+  text-transform: uppercase;
 }
 
 .case-head__copy {
@@ -806,7 +806,7 @@ body.has-lightbox {
 }
 
 .case-next:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--silver);
   outline-offset: -0.25rem;
 }
 
@@ -822,7 +822,7 @@ body.has-lightbox {
 
 .case-next__eyebrow {
   margin: 0;
-  color: var(--gold-soft);
+  color: var(--silver-soft);
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -831,15 +831,15 @@ body.has-lightbox {
 .case-next__name {
   margin: 0;
   color: #efeee9;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2.6rem, 7vw, 6.5rem);
-  font-weight: 400;
+  font-weight: 200;
   line-height: 0.96;
   letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 
 .case-next__cta {
-  color: var(--gold-dim);
+  color: var(--silver-dim);
   font-size: 0.64rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -853,7 +853,7 @@ body.has-lightbox {
 
 .case-next:hover .case-next__cta,
 .case-next:focus-visible .case-next__cta {
-  color: var(--gold);
+  color: var(--silver);
 }
 
 .case-next:hover .case-next__cta span,
@@ -915,7 +915,7 @@ body.has-lightbox {
 
 .case-footer a:hover,
 .case-footer a:focus-visible {
-  color: var(--gold);
+  color: var(--silver);
 }
 
 /* View transitions — easing editorial para los morphs entre páginas */
@@ -947,7 +947,7 @@ body.has-lightbox {
 
 .value__eyebrow {
   margin: 0;
-  color: var(--gold-soft);
+  color: var(--silver-soft);
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -957,11 +957,11 @@ body.has-lightbox {
   margin: 1.15rem 0 0;
   max-width: 16ch;
   color: #efeee9;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2.4rem, 4.6vw, 4rem);
-  font-weight: 400;
+  font-weight: 200;
   line-height: 1;
   letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .value__lead {
@@ -984,7 +984,7 @@ body.has-lightbox {
 
 .value__kicker {
   margin: 0;
-  color: var(--gold-dim);
+  color: var(--silver-dim);
   font-size: 0.62rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -1000,7 +1000,7 @@ body.has-lightbox {
 
 .value__disciplines {
   margin: 1.5rem 0 0;
-  color: var(--gold-dim);
+  color: var(--silver-dim);
   font-size: 0.62rem;
   font-weight: 300;
   line-height: 2;
@@ -1034,7 +1034,7 @@ body.has-lightbox {
 
 .value__benefit-index {
   margin: 0;
-  color: var(--gold-dim);
+  color: var(--silver-dim);
   font-size: 0.68rem;
   letter-spacing: 0.2em;
 }
@@ -1079,7 +1079,7 @@ body.has-lightbox {
 
 .services__eyebrow {
   margin: 0;
-  color: var(--gold-soft);
+  color: var(--silver-soft);
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -1089,11 +1089,11 @@ body.has-lightbox {
   margin: 1.15rem 0 0;
   max-width: 10ch;
   color: #efeee9;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 400;
+  font-weight: 200;
   line-height: 1;
   letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .services__list {
@@ -1113,7 +1113,7 @@ body.has-lightbox {
 
 .services__index {
   flex: none;
-  color: var(--gold-dim);
+  color: var(--silver-dim);
   font-size: 0.68rem;
   letter-spacing: 0.2em;
 }
@@ -1152,7 +1152,7 @@ body.has-lightbox {
 
 .philosophy__eyebrow {
   margin: 0;
-  color: var(--gold-soft);
+  color: var(--silver-soft);
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -1162,11 +1162,11 @@ body.has-lightbox {
   margin: clamp(1.75rem, 3.5vw, 2.75rem) auto 0;
   max-width: 22ch;
   color: #efeee9;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.9rem, 4.2vw, 3.6rem);
-  font-weight: 400;
+  font-weight: 200;
   line-height: 1.08;
   letter-spacing: -0.03em;
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
@@ -1212,7 +1212,7 @@ body.has-lightbox {
 
 .contact__eyebrow {
   margin: 0;
-  color: var(--gold-soft);
+  color: var(--silver-soft);
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -1222,11 +1222,11 @@ body.has-lightbox {
   margin: 1.15rem 0 0;
   max-width: 13ch;
   color: #efeee9;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2.4rem, 4.6vw, 4rem);
-  font-weight: 400;
+  font-weight: 200;
   line-height: 1;
   letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .contact__lead {
@@ -1253,7 +1253,7 @@ body.has-lightbox {
   content: "";
   width: 1.75rem;
   height: 1px;
-  background: var(--gold);
+  background: var(--silver);
 }
 
 .contact__form {
@@ -1309,7 +1309,7 @@ body.has-lightbox {
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-bottom-color: var(--gold);
+  border-bottom-color: var(--silver);
 }
 
 .contact__honeypot {
@@ -1325,9 +1325,9 @@ body.has-lightbox {
   align-self: flex-start;
   margin-top: 0.6rem;
   padding: 0.95rem 2.4rem;
-  border: 1px solid var(--gold-line);
+  border: 1px solid var(--silver-line);
   background: transparent;
-  color: var(--gold);
+  color: var(--silver);
   font-family: inherit;
   font-size: 0.72rem;
   font-weight: 400;
@@ -1341,13 +1341,13 @@ body.has-lightbox {
 }
 
 .contact__submit:hover {
-  background: var(--gold);
-  border-color: var(--gold);
+  background: var(--silver);
+  border-color: var(--silver);
   color: #121417;
 }
 
 .contact__submit:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--silver);
   outline-offset: 0.35rem;
 }
 
@@ -1422,7 +1422,7 @@ body.has-lightbox {
 
 .site-footer__group-label {
   margin: 0;
-  color: var(--gold-dim);
+  color: var(--silver-dim);
   font-size: 0.6rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -1463,7 +1463,7 @@ body.has-lightbox {
 
 .site-footer__col a:hover,
 .site-footer__col a:focus-visible {
-  color: var(--gold);
+  color: var(--silver);
   transform: translateX(3px);
 }
 
@@ -1503,7 +1503,7 @@ body.has-lightbox {
 
 .site-footer__totop:hover,
 .site-footer__totop:focus-visible {
-  color: var(--gold);
+  color: var(--silver);
 }
 
 .site-footer__totop:focus-visible {
