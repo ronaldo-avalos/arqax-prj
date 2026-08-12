@@ -403,7 +403,7 @@ a {
   margin: 0;
   color: rgba(191, 197, 204, 0.08);
   font-weight: 200;
-  font-size: clamp(4.5rem, 10vw, 8rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   line-height: 0.8;
   letter-spacing: -0.04em;
   -webkit-text-stroke: 1px rgba(191, 197, 204, 0.35);
@@ -1652,7 +1652,7 @@ body.has-lightbox {
   }
 
   .work__index {
-    font-size: clamp(3.5rem, 16vw, 4.5rem);
+    font-size: clamp(2.5rem, 12vw, 3.25rem);
   }
 
   .site-footer__top {
