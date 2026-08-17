@@ -1033,6 +1033,58 @@ body.has-lightbox {
   text-wrap: balance;
 }
 
+.value__brands-label {
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  padding-top: clamp(1.5rem, 2.6vw, 2.25rem);
+  border-top: 1px solid rgba(239, 238, 233, 0.1);
+}
+
+.value__brands {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr));
+  gap: clamp(0.5rem, 1.4vw, 1rem);
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.value__brands li {
+  display: grid;
+  place-items: center;
+  height: clamp(4.5rem, 6vw, 5.5rem);
+  padding: 0.75rem;
+  border: 1px solid rgba(239, 238, 233, 0.1);
+  background: rgba(239, 238, 233, 0.02);
+}
+
+/* Los viewBox están recortados a la tinta del logo, así que ambos topes
+   actúan a la vez: la altura manda en los logos cuadrados y el ancho en
+   los apaisados, dejándolos todos a una escala óptica pareja. En rem para
+   que el tamaño no dependa de cómo se resuelva el alto de la celda. */
+.value__brands img {
+  width: auto;
+  height: auto;
+  max-height: calc(2.8rem * var(--logo-scale, 1));
+  max-width: calc(6.5rem * var(--logo-scale, 1));
+  object-fit: contain;
+  /* Los SVG originales son tinta oscura (#1d1d1b) sobre fondo transparente:
+     brightness(0) los aplana a negro e invert(1) los lleva a blanco puro,
+     así el reposo es ese mismo blanco atenuado con opacidad. */
+  filter: brightness(0) invert(1);
+  opacity: 0.58;
+  transform: scale(1);
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 400ms ease;
+}
+
+@media (hover: hover) {
+  .value__brands li:hover img {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
 .value__copy {
   margin: 1.15rem 0 0;
   max-width: 46ch;
@@ -1646,6 +1698,10 @@ body.has-lightbox {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .value__brands {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .value__title,
   .services__title {
     max-width: 20ch;
@@ -1686,6 +1742,10 @@ body.has-lightbox {
   .value__benefits {
     grid-template-columns: 1fr;
     gap: 1.75rem;
+  }
+
+  .value__brands {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .work__index {
@@ -1824,6 +1884,13 @@ body.has-lightbox {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* El hover conserva el blanco, pero sin el crecimiento. */
+  .value__brands img,
+  .value__brands li:hover img {
+    transform: none;
+    transition: opacity 400ms ease;
   }
 
   ::view-transition-group(*),

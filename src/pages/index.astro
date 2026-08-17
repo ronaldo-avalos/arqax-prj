@@ -4,6 +4,15 @@ import { projects, projectUrl, shotSrc, shotSrcset } from "../data/projects";
 
 const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
+
+// Empresas de Grupo IAGO. `box` es el viewBox recortado a la tinta real del
+// logo; `scale` es un ajuste óptico fino para igualar el peso visual.
+const brands = [
+  { name: "ARQAX Arquitectura", file: "arqax.svg", box: [761, 688] },
+  { name: "IAGO Design", file: "iago-design.svg", box: [694, 647] },
+  { name: "Blue Brand", file: "blue-brand.svg", box: [828, 438], scale: 0.84 },
+  { name: "Encorange Miami", file: "encorange.svg", box: [617, 648], scale: 1.04 },
+];
 ---
 
 
@@ -149,6 +158,24 @@ const year = new Date().getFullYear();
               Diseño · Arquitectura · Interiorismo · Fabricación ·
               Construcción · Lujo
             </p>
+
+            <p class="value__kicker value__brands-label">Empresas del grupo</p>
+            <ul class="value__brands">
+              {
+                brands.map((brand) => (
+                  <li style={`--logo-scale:${brand.scale ?? 1}`}>
+                    <img
+                      src={`${base}marcas/${brand.file}`}
+                      alt={brand.name}
+                      width={brand.box[0]}
+                      height={brand.box[1]}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </li>
+                ))
+              }
+            </ul>
           </div>
         </div>
 
