@@ -28,20 +28,26 @@ const year = new Date().getFullYear();
           <a href="#contacto">Contacto</a>
         </nav>
 
-        <div class="hero__identity">
+        <h1 class="hero__identity">
           <span class="hero__logo-reveal">
             <img class="hero__logo" src={`${base}arqax-logo.svg`} alt="ARQAX Arquitectura" />
           </span>
-        </div>
+        </h1>
 
         <div class="hero__copy">
-          <div class="hero__copy-reveal">
-            <h1>Diseños que impactan</h1>
-            <p>
-              Estudio de arquitectura. Identidad que construye confianza, diseña
-              experiencias y transforma espacios.
-            </p>
-          </div>
+          <p class="hero__copy-reveal hero__disciplines">
+            <span class="hero__pair">
+              <span>Arquitectura</span>
+              <i aria-hidden="true"></i>
+              <span>Interiorismo</span>
+            </span>
+            <i class="hero__pair-sep" aria-hidden="true"></i>
+            <span class="hero__pair">
+              <span>Espacios comerciales</span>
+              <i aria-hidden="true"></i>
+              <span>Mobiliario de lujo</span>
+            </span>
+          </p>
         </div>
 
         <div class="scroll-cue" aria-hidden="true">
