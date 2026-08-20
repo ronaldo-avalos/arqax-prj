@@ -1839,6 +1839,113 @@ body.has-lightbox {
   }
 }
 
+/* ---------------------------------------------------------------------- */
+/* Botón flotante de WhatsApp                                             */
+/* ---------------------------------------------------------------------- */
+
+.whatsapp-fab {
+  --wa-green: #25d366;
+  position: fixed;
+  z-index: 50;
+  right: max(1.6rem, env(safe-area-inset-right));
+  bottom: max(1.6rem, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  padding: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--silver-line);
+  background: rgba(12, 14, 16, 0.82);
+  color: var(--silver);
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0.9rem 2.2rem rgba(0, 0, 0, 0.45);
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    color 300ms ease,
+    transform 300ms ease;
+}
+
+/* La etiqueta se pliega hasta el hover: en reposo solo se ve el círculo. */
+.whatsapp-fab__label {
+  max-width: 0;
+  padding-inline: 0;
+  overflow: hidden;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    max-width 380ms ease,
+    padding 380ms ease,
+    opacity 280ms ease;
+}
+
+.whatsapp-fab__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--wa-green);
+  color: #0b0d0e;
+}
+
+.whatsapp-fab__icon svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: block;
+}
+
+@media (hover: hover) {
+  .whatsapp-fab:hover {
+    border-color: var(--wa-green);
+    color: var(--paper);
+    transform: translateY(-2px);
+  }
+
+  .whatsapp-fab:hover .whatsapp-fab__label {
+    max-width: 9rem;
+    padding-inline: 0.95rem 0.6rem;
+    opacity: 1;
+  }
+}
+
+.whatsapp-fab:focus-visible {
+  outline: 2px solid var(--wa-green);
+  outline-offset: 0.35rem;
+}
+
+.whatsapp-fab:focus-visible .whatsapp-fab__label {
+  max-width: 9rem;
+  padding-inline: 0.95rem 0.6rem;
+  opacity: 1;
+}
+
+/* Con el lightbox abierto el botón estorba: se retira. */
+body.has-lightbox .whatsapp-fab {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .whatsapp-fab {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .whatsapp-fab__icon {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+
+  .whatsapp-fab__icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1886,6 +1993,15 @@ body.has-lightbox {
     transition: none;
   }
 
+  .whatsapp-fab,
+  .whatsapp-fab__label {
+    transition: none;
+  }
+
+  .whatsapp-fab:hover {
+    transform: none;
+  }
+
   /* El hover conserva el blanco, pero sin el crecimiento. */
   .value__brands img,
   .value__brands li:hover img {
@@ -1898,5 +2014,160 @@ body.has-lightbox {
   ::view-transition-old(*),
   ::view-transition-new(*) {
     animation: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Header píldora — aparece centrado al hacer scroll                      */
+/* ---------------------------------------------------------------------- */
+
+/* Las barras de reposo (hero e interior de proyecto) ceden su lugar. */
+.hero-nav,
+.case-bar {
+  transition:
+    opacity 300ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.is-scrolled .hero-nav,
+html.is-scrolled .case-bar {
+  opacity: 0;
+  transform: translate3d(0, -0.6rem, 0);
+  pointer-events: none;
+}
+
+.pill-nav {
+  position: fixed;
+  z-index: 45;
+  top: max(clamp(0.7rem, 1.6vw, 1.15rem), env(safe-area-inset-top));
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 1.4vw, 1.05rem);
+  max-width: calc(100vw - 1.5rem);
+  padding: 0.4rem 0.5rem 0.4rem 1.15rem;
+  border: 1px solid var(--silver-line);
+  border-radius: 999px;
+  background: rgba(9, 11, 12, 0.62);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 0.9rem 2.2rem rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(239, 238, 233, 0.07);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(-50%, -1.5rem, 0) scale(0.94);
+  transition:
+    opacity 340ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 340ms;
+}
+
+html.is-scrolled .pill-nav {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(-50%, 0, 0) scale(1);
+}
+
+.pill-nav__brand {
+  display: flex;
+  align-items: center;
+  padding-right: clamp(0.6rem, 1.4vw, 1.05rem);
+  border-right: 1px solid var(--silver-line);
+}
+
+/* El logo es un lockup apilado: se limita por altura para que la píldora
+   conserve su proporción esbelta. */
+.pill-nav__brand img {
+  display: block;
+  width: auto;
+  height: clamp(2rem, 2.6vw, 2.4rem);
+  filter: invert(1) brightness(1.75);
+}
+
+.pill-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.pill-nav__links a {
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  color: rgba(239, 238, 233, 0.78);
+  font-size: clamp(0.6rem, 0.72vw, 0.68rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 240ms ease,
+    background-color 240ms ease;
+}
+
+@media (hover: hover) {
+  .pill-nav__links a:hover {
+    color: #fff;
+    background: rgba(239, 238, 233, 0.08);
+  }
+}
+
+.pill-nav a:focus-visible {
+  outline: 2px solid var(--silver);
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .pill-nav {
+    gap: 0.4rem;
+    padding: 0.3rem 0.35rem 0.3rem 0.8rem;
+  }
+
+  .pill-nav__brand {
+    padding-right: 0.55rem;
+  }
+
+  .pill-nav__brand img {
+    height: 1.85rem;
+  }
+
+  .pill-nav__links a {
+    padding: 0.45rem 0.5rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Sin sitio para la marca: la píldora se queda solo con los enlaces. */
+@media (max-width: 520px) {
+  .pill-nav {
+    padding-left: 0.35rem;
+  }
+
+  .pill-nav__brand {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill-nav {
+    transform: translate3d(-50%, 0, 0);
+    transition:
+      opacity 200ms ease,
+      visibility 200ms;
+  }
+
+  html.is-scrolled .pill-nav {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .hero-nav,
+  .case-bar {
+    transition: opacity 200ms ease;
+  }
+
+  html.is-scrolled .hero-nav,
+  html.is-scrolled .case-bar {
+    transform: none;
   }
 }

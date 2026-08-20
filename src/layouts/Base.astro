@@ -15,6 +15,13 @@ const {
 const base = import.meta.env.BASE_URL;
 const ogImage = new URL(`${base}og.png`, Astro.site);
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// TODO: reemplazar por el número real de WhatsApp (formato internacional,
+// solo dígitos: código de país + número).
+const whatsappNumber = "5215512345678";
+const whatsappMessage =
+  "Hola ARQAX, me gustaría platicar sobre un proyecto.";
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 ---
 
 <!doctype html>
@@ -43,7 +50,37 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <ClientRouter />
   </head>
   <body>
+    <nav class="pill-nav" aria-label="Navegación fija">
+      <a class="pill-nav__brand" href={base} aria-label="ARQAX — inicio">
+        <img src={`${base}arqax-logo.svg`} alt="" width="92" height="24" />
+      </a>
+      <div class="pill-nav__links">
+        <a href={`${base}#proyectos`}>Proyectos</a>
+        <a href={`${base}#estudio`}>Estudio</a>
+        <a href={`${base}#servicios`}>Servicios</a>
+        <a href={`${base}#contacto`}>Contacto</a>
+      </div>
+    </nav>
+
     <slot />
+
+    <a
+      class="whatsapp-fab"
+      href={whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Escríbenos por WhatsApp"
+    >
+      <span class="whatsapp-fab__label" aria-hidden="true">Escríbenos</span>
+      <span class="whatsapp-fab__icon">
+        <svg viewBox="0 0 32 32" role="img" aria-hidden="true" focusable="false">
+          <path
+            fill="currentColor"
+            d="M16.03 4C9.42 4 4.05 9.37 4.05 15.98c0 2.11.55 4.17 1.6 5.99L4 28l6.19-1.61a11.94 11.94 0 0 0 5.84 1.49h.01c6.6 0 11.97-5.37 11.98-11.98a11.9 11.9 0 0 0-3.5-8.48A11.9 11.9 0 0 0 16.03 4Zm0 2.02c2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96a9.94 9.94 0 0 1-5.06-1.39l-.36-.21-3.67.96.98-3.58-.24-.37a9.9 9.9 0 0 1-1.52-5.3c0-5.49 4.47-9.96 9.97-9.96h-.09Zm-4.5 5.03c-.21 0-.55.08-.84.4-.29.32-1.1 1.08-1.1 2.63 0 1.55 1.13 3.05 1.29 3.26.16.21 2.19 3.34 5.3 4.68.74.32 1.32.51 1.77.66.74.24 1.42.2 1.96.12.6-.09 1.84-.75 2.1-1.48.26-.73.26-1.35.18-1.48-.08-.13-.29-.21-.6-.37-.32-.16-1.85-.91-2.14-1.02-.29-.1-.5-.16-.71.16-.21.32-.81 1.02-.99 1.23-.19.21-.37.24-.68.08-.32-.16-1.33-.49-2.53-1.56-.94-.83-1.57-1.86-1.75-2.17-.19-.32-.02-.49.14-.65.14-.14.32-.37.47-.56.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.56-.08-.16-.7-1.7-.98-2.32-.26-.61-.52-.53-.71-.54h-.6Z"
+          ></path>
+        </svg>
+      </span>
+    </a>
 
     <script>
       const clamp = (value: number, min: number, max: number) =>
@@ -53,8 +90,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       // consulta por frame porque cambia con cada navegación SPA.
       let frame = 0;
 
+      // Umbral en el que la barra superior cede su lugar al header píldora.
+      const PILL_AT = 88;
+
+      const updateScrolledState = () => {
+        document.documentElement.classList.toggle(
+          "is-scrolled",
+          window.scrollY > PILL_AT,
+        );
+      };
+
       const updateHeroProgress = () => {
-        frame = 0;
         const hero = document.querySelector<HTMLElement>(".hero");
         if (!hero) return;
         const rect = hero.getBoundingClientRect();
@@ -63,13 +109,23 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         hero.style.setProperty("--scroll-progress", progress.toFixed(4));
       };
 
-      const requestHeroUpdate = () => {
-        if (frame) return;
-        frame = window.requestAnimationFrame(updateHeroProgress);
+      const onFrame = () => {
+        frame = 0;
+        updateScrolledState();
+        updateHeroProgress();
       };
 
-      window.addEventListener("scroll", requestHeroUpdate, { passive: true });
-      window.addEventListener("resize", requestHeroUpdate);
+      const requestFrame = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(onFrame);
+      };
+
+      window.addEventListener("scroll", requestFrame, { passive: true });
+      window.addEventListener("resize", requestFrame);
+
+      // ClientRouter reemplaza los atributos de <html> al navegar: se repone
+      // el estado antes del primer pintado para evitar un parpadeo.
+      document.addEventListener("astro:after-swap", updateScrolledState);
 
       // Reveal-on-scroll for elements marked with .reveal
       const initReveal = () => {
@@ -206,7 +262,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
       // Se dispara en la carga inicial y tras cada navegación con ClientRouter
       document.addEventListener("astro:page-load", () => {
-        updateHeroProgress();
+        onFrame();
         initReveal();
         initLightbox();
         initContactForm();
