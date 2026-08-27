@@ -16,9 +16,9 @@ const base = import.meta.env.BASE_URL;
 const ogImage = new URL(`${base}og.png`, Astro.site);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
-// TODO: reemplazar por el número real de WhatsApp (formato internacional,
+// Número oficial de contacto: +52 56 2008 4317 (formato internacional,
 // solo dígitos: código de país + número).
-const whatsappNumber = "5215512345678";
+const whatsappNumber = "525620084317";
 const whatsappMessage =
   "Hola ARQAX, me gustaría platicar sobre un proyecto.";
 const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
