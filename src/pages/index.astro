@@ -31,9 +31,9 @@ const brands = [
         <div class="hero__shade" aria-hidden="true"></div>
 
         <nav class="hero-nav" aria-label="Navegación principal">
+          <a href="#servicios">Servicios</a>
           <a href="#proyectos">Proyectos</a>
           <a href="#estudio">Estudio</a>
-          <a href="#servicios">Servicios</a>
           <a href="#contacto">Contacto</a>
         </nav>
 
@@ -63,6 +63,56 @@ const brands = [
           <span>Descubre</span>
           <i></i>
         </div>
+      </div>
+    </section>
+
+    <section class="services" id="servicios">
+      <div class="services__inner">
+        <header class="services__head reveal">
+          <p class="services__eyebrow">Servicios</p>
+          <h2 class="services__title">Una solución integral</h2>
+        </header>
+
+        <ol class="services__list reveal">
+          <li>
+            <span class="services__index">01</span>
+            <span class="services__name">Arquitectura comercial y retail</span>
+          </li>
+          <li>
+            <span class="services__index">02</span>
+            <span class="services__name">Diseño arquitectónico e interiorismo</span>
+          </li>
+          <li>
+            <span class="services__index">03</span>
+            <span class="services__name">Proyecto ejecutivo</span>
+          </li>
+          <li>
+            <span class="services__index">04</span>
+            <span class="services__name">
+              Remodelaciones y adecuaciones comerciales
+            </span>
+          </li>
+          <li>
+            <span class="services__index">05</span>
+            <span class="services__name">Ejecución y supervisión de obra</span>
+          </li>
+          <li>
+            <span class="services__index">06</span>
+            <span class="services__name">
+              Fabricación e instalación de mobiliario
+              <span class="services__note">
+                a través de IAGO Design, empresa de Grupo IAGO
+              </span>
+            </span>
+          </li>
+          <li>
+            <span class="services__index">07</span>
+            <span class="services__name">
+              Coordinación integral de proyectos
+              <span class="services__note">llave en mano</span>
+            </span>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -125,58 +175,14 @@ const brands = [
           </p>
         </header>
 
-        <div class="value__grid reveal">
-          <div class="value__synergy">
-            <p class="value__kicker">Propuesta de valor</p>
-            <p class="value__copy">
-              Acompañamos a nuestros clientes durante todo el ciclo del
-              proyecto. No solo diseñamos: coordinamos, ejecutamos y entregamos
-              espacios listos para operar, asegurando calidad, control y
-              continuidad en cada etapa.
-            </p>
-          </div>
-
-          <div class="value__synergy">
-            <p class="value__kicker">Sinergia</p>
-            <img
-              class="value__iago"
-              src={`${base}grupo-iago.png`}
-              alt="Grupo IAGO"
-              width="369"
-              height="155"
-              loading="lazy"
-              decoding="async"
-            />
-            <p class="value__copy">
-              Nuestra mayor fortaleza es la sinergia con las empresas que
-              conforman Grupo IAGO: integramos en un mismo proyecto
-              arquitectura, proyecto ejecutivo, construcción, fabricación de
-              mobiliario y soluciones especializadas, desde el primer trazo
-              hasta la entrega final.
-            </p>
-            <p class="value__disciplines">
-              Diseño · Arquitectura · Interiorismo · Fabricación ·
-              Construcción · Lujo
-            </p>
-
-            <p class="value__kicker value__brands-label">Empresas del grupo</p>
-            <ul class="value__brands">
-              {
-                brands.map((brand) => (
-                  <li style={`--logo-scale:${brand.scale ?? 1}`}>
-                    <img
-                      src={`${base}marcas/${brand.file}`}
-                      alt={brand.name}
-                      width={brand.box[0]}
-                      height={brand.box[1]}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+        <div class="value__proposal reveal">
+          <h3 class="value__proposal-title">Propuesta de valor</h3>
+          <p class="value__proposal-copy">
+            Acompañamos a nuestros clientes durante todo el ciclo del proyecto.
+            No solo diseñamos: coordinamos, ejecutamos y entregamos espacios
+            listos para operar, asegurando calidad, control y continuidad en
+            cada etapa.
+          </p>
         </div>
 
         <ul class="value__benefits reveal">
@@ -213,70 +219,52 @@ const brands = [
             </p>
           </li>
         </ul>
-      </div>
-    </section>
 
-    <section class="services" id="servicios">
-      <div class="services__inner">
-        <header class="services__head reveal">
-          <p class="services__eyebrow">Servicios</p>
-          <h2 class="services__title">Una solución integral</h2>
-        </header>
+        <div class="value__synergy reveal">
+          <div class="value__synergy-main">
+            <p class="value__kicker">Sinergia</p>
+            <img
+              class="value__iago"
+              src={`${base}grupo-iago.png`}
+              alt="Grupo IAGO"
+              width="369"
+              height="155"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="value__copy">
+              Nuestra mayor fortaleza es la sinergia con las empresas que
+              conforman Grupo IAGO: integramos en un mismo proyecto
+              arquitectura, proyecto ejecutivo, construcción, fabricación de
+              mobiliario y soluciones especializadas, desde el primer trazo
+              hasta la entrega final.
+            </p>
+            <p class="value__disciplines">
+              Diseño · Arquitectura · Interiorismo · Fabricación ·
+              Construcción · Lujo
+            </p>
+          </div>
 
-        <ol class="services__list reveal">
-          <li>
-            <span class="services__index">01</span>
-            <span class="services__name">Arquitectura comercial y retail</span>
-          </li>
-          <li>
-            <span class="services__index">02</span>
-            <span class="services__name">Diseño arquitectónico e interiorismo</span>
-          </li>
-          <li>
-            <span class="services__index">03</span>
-            <span class="services__name">Proyecto ejecutivo</span>
-          </li>
-          <li>
-            <span class="services__index">04</span>
-            <span class="services__name">
-              Remodelaciones y adecuaciones comerciales
-            </span>
-          </li>
-          <li>
-            <span class="services__index">05</span>
-            <span class="services__name">Ejecución y supervisión de obra</span>
-          </li>
-          <li>
-            <span class="services__index">06</span>
-            <span class="services__name">
-              Fabricación e instalación de mobiliario
-              <span class="services__note">
-                a través de IAGO Design, empresa de Grupo IAGO
-              </span>
-            </span>
-          </li>
-          <li>
-            <span class="services__index">07</span>
-            <span class="services__name">
-              Coordinación integral de proyectos
-              <span class="services__note">llave en mano</span>
-            </span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="philosophy" aria-label="Filosofía">
-      <div class="philosophy__inner reveal">
-        <p class="philosophy__eyebrow">Filosofía</p>
-        <blockquote class="philosophy__quote">
-          Un espacio comercial debe vender, comunicar y generar experiencias.
-        </blockquote>
-        <p class="philosophy__copy">
-          Diseñamos con una visión estratégica donde cada decisión responde a un
-          objetivo de negocio, cuidando tanto la funcionalidad como la calidad
-          estética y constructiva.
-        </p>
+          <div class="value__synergy-brands">
+            <p class="value__kicker">Empresas del grupo</p>
+            <ul class="value__brands">
+              {
+                brands.map((brand) => (
+                  <li style={`--logo-scale:${brand.scale ?? 1}`}>
+                    <img
+                      src={`${base}marcas/${brand.file}`}
+                      alt={brand.name}
+                      width={brand.box[0]}
+                      height={brand.box[1]}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -384,9 +372,9 @@ const brands = [
 
       <nav class="site-footer__col" aria-label="Navegación del pie de página">
         <p class="site-footer__heading">Navegación</p>
+        <a href="#servicios">Servicios</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#estudio">Estudio</a>
-        <a href="#servicios">Servicios</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
