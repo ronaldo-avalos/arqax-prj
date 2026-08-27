@@ -1000,7 +1000,7 @@ body.has-lightbox {
 .value__title {
   grid-column: 1;
   margin: 1.15rem 0 0;
-  max-width: 16ch;
+  max-width: 20ch;
   color: #efeee9;
   font-size: clamp(1.8rem, 3.4vw, 3rem);
   font-weight: 200;
@@ -1715,10 +1715,6 @@ body.has-lightbox {
 
   .value__benefits {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .value__title {
-    max-width: 20ch;
   }
 
   .services__list {
