@@ -992,6 +992,11 @@ body.has-lightbox {
 .value__inner {
   max-width: 78rem;
   margin: 0 auto;
+  /* Retícula compartida por la cabecera y la propuesta: cada bloque la definía
+     por su cuenta y el texto de la derecha arrancaba en una vertical distinta
+     en cada uno. Una sola fuente mantiene las dos columnas alineadas. */
+  --value-cols: minmax(0, 1fr) minmax(0, 1fr);
+  --value-gap: clamp(1.75rem, 5vw, 4.5rem);
 }
 
 /* Cabecera a dos columnas: el titular ocupa la izquierda y el lead sube al
@@ -999,8 +1004,8 @@ body.has-lightbox {
    Antes el lead colgaba bajo el titular y dejaba media franja vacia. */
 .value__head {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
-  column-gap: clamp(2.5rem, 6vw, 5.5rem);
+  grid-template-columns: var(--value-cols);
+  column-gap: var(--value-gap);
   align-items: end;
 }
 
@@ -1040,9 +1045,9 @@ body.has-lightbox {
    ancho completo a la derecha. */
 .value__proposal {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: var(--value-cols);
   align-items: start;
-  gap: clamp(1.75rem, 5vw, 4.5rem);
+  gap: var(--value-gap);
   margin-top: clamp(3rem, 6vw, 5rem);
   padding-top: clamp(2.25rem, 4.5vw, 3.5rem);
   border-top: 1px solid rgba(239, 238, 233, 0.1);
