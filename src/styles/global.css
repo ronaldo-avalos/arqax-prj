@@ -1799,20 +1799,6 @@ body.has-lightbox {
     min-height: 58rem;
   }
 
-  .hero-nav {
-    top: 0.85rem;
-    right: 0.85rem;
-    left: 0.85rem;
-    justify-content: flex-end;
-    gap: clamp(0.6rem, 3.2vw, 1.25rem);
-  }
-
-  .hero-nav a {
-    font-size: clamp(0.55rem, 2.4vw, 0.62rem);
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-  }
-
   .hero__identity {
     top: 17svh;
     width: clamp(11.5rem, 48vw, 14rem);
@@ -2165,6 +2151,22 @@ html.is-scrolled .pill-nav {
     padding: 0.45rem 0.5rem;
     font-size: 0.56rem;
     letter-spacing: 0.08em;
+  }
+}
+
+/* En móvil la píldora es el único header: las barras de reposo del hero y de
+   las fichas no llegan a mostrarse, así que la píldora deja de depender del
+   scroll y está presente desde el primer pintado. */
+@media (max-width: 700px) {
+  .hero-nav,
+  .case-bar {
+    display: none;
+  }
+
+  .pill-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(-50%, 0, 0) scale(1);
   }
 }
 
