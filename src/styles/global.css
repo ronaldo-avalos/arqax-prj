@@ -29,6 +29,16 @@ a {
   color: inherit;
 }
 
+/* Al recargar con el cursor ya encima de una imagen, el :hover se resuelve
+   un frame después del primer pintado y la transición de filtro se veía
+   correr sola: la foto pasaba de blanco y negro a color sin que nadie la
+   tocara. Hasta que la página se marca lista, esos cambios son instantáneos. */
+html:not(.is-ready) .work__media img,
+html:not(.is-ready) .shot__btn img,
+html:not(.is-ready) .case-next__media img {
+  transition: none;
+}
+
 .hero {
   --scroll-progress: 0;
   position: relative;

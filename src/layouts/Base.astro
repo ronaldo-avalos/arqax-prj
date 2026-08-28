@@ -127,6 +127,20 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       // el estado antes del primer pintado para evitar un parpadeo.
       document.addEventListener("astro:after-swap", updateScrolledState);
 
+      // Las transiciones de filtro solo se habilitan tras el primer pintado:
+      // si el cursor ya estaba sobre una imagen al recargar, el hover entra
+      // sin animación en vez de correr el paso de blanco y negro a color.
+      const markReady = () => {
+        window.requestAnimationFrame(() =>
+          window.requestAnimationFrame(() =>
+            document.documentElement.classList.add("is-ready"),
+          ),
+        );
+      };
+
+      markReady();
+      document.addEventListener("astro:after-swap", markReady);
+
       // Reveal-on-scroll for elements marked with .reveal
       const initReveal = () => {
         const revealTargets = document.querySelectorAll<HTMLElement>(".reveal");
