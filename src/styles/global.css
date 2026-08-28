@@ -686,7 +686,9 @@ body.has-lightbox {
   display: block;
   width: clamp(4.5rem, 9vw, 5.75rem);
   height: auto;
+  /* Mismo gris que los enlaces de al lado (paper al 82%) en vez de blanco. */
   filter: invert(1) brightness(1.75);
+  opacity: 0.82;
 }
 
 .case-bar__nav {
@@ -2103,7 +2105,9 @@ html.is-scrolled .pill-nav {
   display: block;
   width: auto;
   height: clamp(2rem, 2.6vw, 2.4rem);
+  /* Mismo gris que los enlaces de al lado (paper al 78%) en vez de blanco. */
   filter: invert(1) brightness(1.75);
+  opacity: 0.78;
 }
 
 .pill-nav__links {
