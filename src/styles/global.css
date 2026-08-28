@@ -226,7 +226,10 @@ html:not(.is-ready) .case-next__media img {
   width: 100%;
   height: 100%;
   display: block;
-  filter: invert(1) brightness(1.75)
+  /* El SVG se sirve como <img>, así que su currentColor cae a negro:
+     invert(1) lo lleva a blanco y el brightness lo baja al gris de los
+     textos en vez de dejarlo en blanco puro. */
+  filter: invert(1) brightness(0.78)
     blur(calc(var(--scroll-progress) * 12px));
   transform: scale(calc(1 - var(--scroll-progress) * 0.045));
   will-change: filter, transform;
@@ -2004,7 +2007,7 @@ body.has-lightbox .whatsapp-fab {
   }
 
   .hero__logo {
-    filter: invert(1) brightness(1.75);
+    filter: invert(1) brightness(0.78);
   }
 
   .scroll-cue i::after {
