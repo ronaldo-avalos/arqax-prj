@@ -1262,10 +1262,14 @@ body.has-lightbox {
   border-top: 1px solid rgba(239, 238, 233, 0.14);
 }
 
+/* Mismo tratamiento de cifra que los hitos de Estudio, un escalón por debajo
+   para que la jerarquía entre las dos secciones se mantenga. */
 .services__index {
-  color: var(--silver-dim);
-  font-size: 0.62rem;
-  letter-spacing: 0.24em;
+  color: rgba(239, 238, 233, 0.28);
+  font-size: clamp(1.75rem, 3vw, 2.6rem);
+  font-weight: 200;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
 }
 
 .services__name {
