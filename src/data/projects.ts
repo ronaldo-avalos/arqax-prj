@@ -31,7 +31,7 @@ export const projects: Project[] = [
     slug: "papi-steak",
     name: "Papi Steak",
     type: "Hospitalidad · Restaurante",
-    copy: "Un steakhouse resuelto como un salón nocturno. El terciopelo, el latón y el cortinaje envuelven el comedor mientras los candiles de flecos bajan la escala del techo y concentran la luz sobre cada mesa. El mobiliario a medida ordena banquetas y reservados en un recorrido continuo.",
+    copy: "Un steakhouse resuelto como un salón nocturno. El terciopelo, el latón y el cortinaje envuelven el comedor mientras los candiles de flecos bajan la escala del techo y concentran la luz sobre cada mesa. El mobiliario a la medida estructura el restaurante, integrando mesas, asientos y espacios reservados en un recorrido continuo y cuidadosamente diseñado.",
     meta: [
       ["Tipología", "Hospitalidad · Restaurante"],
       ["Alcance", "Diseño, proyecto ejecutivo, obra y mobiliario"],
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     gallery: [
       {
         slug: "banquetas",
-        caption: "Banquetas y comedor",
+        caption: "Restaurante",
         alt: "Hilera de banquetas de terciopelo rojo con mesas vestidas",
         widths: [1200, 1800],
         size: [1800, 1009],
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     slug: "smart-bamboo",
     name: "Smart Bamboo",
     type: "Retail · Tienda",
-    copy: "Una tienda concebida como una experiencia de descanso. Los volúmenes curvos y los nichos iluminados ordenan el recorrido y ponen el producto en el centro, mientras la luz perimetral define cada zona y da continuidad al espacio, de la vitrina a la última área de prueba.",
+    copy: "Una tienda concebida como una experiencia de descanso y bienestar. Los volúmenes curvos y los nichos iluminados ordenan el flujo y jerarquizan el producto. El mobiliario y los elementos de exhibición se integran a la arquitectura para construir una composición continua, donde materialidad, luz y geometría refuerzan la identidad de la marca.",
     meta: [
       ["Tipología", "Retail · Tienda"],
       ["Alcance", "Diseño, proyecto ejecutivo, obra y mobiliario"],
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     gallery: [
       {
         slug: "fachada-frontal",
-        caption: "Vitrina principal",
+        caption: "Escaparate Principal",
         alt: "Vitrina frontal de Smart Bamboo con nichos iluminados y exhibición de textiles",
         widths: [1200, 1672],
         size: [1672, 941],
@@ -120,14 +120,14 @@ export const projects: Project[] = [
       },
       {
         slug: "muro-marca",
-        caption: "Muro de marca y zona de prueba",
+        caption: "Experiencia sensorial",
         alt: "Muro de marca con iconografía, sillones de masaje y cama de prueba",
         widths: [900, 1500],
         size: [1500, 844],
       },
       {
         slug: "dormitorio-nicho",
-        caption: "Nicho de descanso",
+        caption: "Diseño integral del espacio y mobiliario",
         alt: "Cama enmarcada por un nicho curvo con luz perimetral",
         widths: [700, 1100],
         size: [1100, 1956],
@@ -141,7 +141,7 @@ export const projects: Project[] = [
       },
       {
         slug: "camas-vitrina",
-        caption: "Vitrina interior",
+        caption: "Diseño integral del espacio y mobiliario",
         alt: "Camas de exhibición junto al cristal de la vitrina",
         widths: [900, 1500],
         size: [1500, 844],
